@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<div id="checkout-page" class="page-container">
+
+  <div id="checkout-header" class="page-header">
+    <h1 id="checkout-title" class="page-title">🏁 Checkout</h1>
+    <p id="checkout-subtitle" class="page-subtitle">Complete your order</p>
+  </div>
+
+  <!-- Steps Indicator -->
+  <div id="checkout-steps" class="steps-bar">
+    <div class="step completed" id="step-cart">
+      <div class="step-circle">✓</div>
+      <span>Cart</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step active" id="step-shipping">
+      <div class="step-circle">2</div>
+      <span>Shipping</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step" id="step-payment">
+      <div class="step-circle">3</div>
+      <span>Payment</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step" id="step-confirm">
+      <div class="step-circle">4</div>
+      <span>Confirm</span>
+    </div>
+  </div>
+
+  <div id="checkout-layout" class="checkout-layout">
+
+    <!-- Shipping Form -->
+    <div id="shipping-section" class="checkout-form-section">
+      <h2 id="shipping-title" class="checkout-section-title">📦 Shipping Information</h2>
+
+      <form id="checkout-form" method="POST" action="{{ url_for('checkout') }}" novalidate>
+
+        <div class="form-group" id="fg-shipping-address">
+          <label for="shipping_address" class="form-label">Street Address <span class="required">*</span></label>
+          <input type="text" id="shipping_address" name="shipping_address" class="form-input"
+                 placeholder="123 Main Street, Apt 4B" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group" id="fg-city">
+            <label for="city" class="form-label">City <span class="required">*</span></label>
+            <input type="text" id="city" name="city" class="form-input" placeholder="New York" required />
+          </div>
+          <div class="form-group" id="fg-state">
+            <label for="state" class="form-label">State <span class="required">*</span></label>
+            <select id="state" name="state" class="form-input" required>
+              <option value="">Select State…</option>
+              <option>Alabama</option><option>Alaska</option><option>Arizona</option>
+              <option>California</option><option>Colorado</option><option>Florida</option>
+              <option>Georgia</option><option>Illinois</option><option>New York</option>
+              <option>Nevada</option><option>Ohio</option><option>Texas</option>
+              <option>Washington</option>
+            </select>
+          </div>
+          <div class="form-group" id="fg-zip">
+            <label for="zip_code" class="form-label">ZIP Code <span class="required">*</span></label>
+            <input type="text" id="zip_code" name="zip_code" class="form-input" placeholder="10001" required />
+          </div>
+        </div>
+
+        <!-- Payment (dummy) -->
+        <h2 id="payment-title" class="checkout-section-title">💳 Payment Details</h2>
+        <div class="payment-notice" id="payment-notice">
+          🔒 This is a <strong>test environment</strong>. No real payment is processed.
+        </div>
+
+        <div class="form-group" id="fg-card-number">
+          <label for="card_number" class="form-label">Card Number</label>
+          <div class="input-wrapper">
+            <span class="input-icon">💳</span>
+            <input type="text" id="card_number" name="card_number" class="form-input"
+                   placeholder="4242 4242 4242 4242" value="4242 4242 4242 4242" readonly />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group" id="fg-card-expiry">
+            <label for="card_expiry" class="form-label">Expiry</label>
+            <input type="text" id="card_expiry" name="card_expiry" class="form-input"
+                   placeholder="MM/YY" value="12/28" readonly />
+          </div>
+          <div class="form-group" id="fg-card-cvv">
+            <label for="card_cvv" class="form-label">CVV</label>
+            <input type="text" id="card_cvv" name="card_cvv" class="form-input"
+                   placeholder="123" value="123" readonly />
+          </div>
+        </div>
+
+        <button type="submit" id="place-order-btn" class="btn btn-primary btn-full btn-lg">
+          ✅ Place Order
+        </button>
+        <a href="{{ url_for('cart') }}" id="back-to-cart-btn" class="btn btn-ghost btn-full">
+          ← Back to Cart
+        </a>
+      </form>
+    </div>
+
+    <!-- Order Summary sidebar -->
+    <div id="checkout-summary" class="checkout-summary">
+      <h2 id="checkout-summary-title" class="checkout-section-title">Your Order</h2>
+
+      <div id="checkout-items-list" class="checkout-items-list">
+        {% for item in items %}
+        <div class="checkout-item" id="co-item-{{ loop.index }}">
+          <img src="{{ item.image_url }}" alt="{{ item.name }}" class="co-item-img"
+               id="co-img-{{ loop.index }}" />
+          <div class="co-item-info">
+            <p class="co-item-name" id="co-name-{{ loop.index }}">{{ item.name }}</p>
+            <p class="co-item-qty"  id="co-qty-{{ loop.index }}">× {{ item.quantity }}</p>
+          </div>
+          <p class="co-item-price" id="co-price-{{ loop.index }}">${{ "%.2f"|format(item.price * item.quantity) }}</p>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="summary-row" id="co-subtotal">
+        <span>Subtotal</span>
+        <span id="co-subtotal-val">${{ "%.2f"|format(total) }}</span>
+      </div>
+      <div class="summary-row" id="co-shipping">
+        <span>Shipping</span>
+        <span id="co-shipping-val">{% if total >= 50 %}FREE{% else %}$5.99{% endif %}</span>
+      </div>
+      <div class="summary-row summary-total" id="co-total">
+        <span><strong>Total</strong></span>
+        <span id="co-total-val"><strong>${{ "%.2f"|format(total + (0 if total >= 50 else 5.99)) }}</strong></span>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block title %}Shopping Cart{% endblock %}
+
+{% block content %}
+<div id="cart-page" class="page-container">
+
+  <div id="cart-header" class="page-header">
+    <h1 id="cart-title" class="page-title">🛒 Shopping Cart</h1>
+    <p id="cart-subtitle" class="page-subtitle">
+      {{ items|length }} item{{ 's' if items|length != 1 }} in your cart
+    </p>
+  </div>
+
+  {% if items %}
+  <div id="cart-layout" class="cart-layout">
+
+    <!-- Cart Items -->
+    <div id="cart-items-section" class="cart-items-section">
+      {% for item in items %}
+      <div class="cart-item" id="cart-item-{{ item.cart_id }}">
+        <img src="{{ item.image_url }}" alt="{{ item.name }}"
+             id="cart-item-img-{{ item.cart_id }}" class="cart-item-img" />
+
+        <div class="cart-item-info" id="cart-item-info-{{ item.cart_id }}">
+          <h3 class="cart-item-name" id="cart-item-name-{{ item.cart_id }}">{{ item.name }}</h3>
+          <p class="cart-item-price" id="cart-item-price-{{ item.cart_id }}">${{ "%.2f"|format(item.price) }} each</p>
+        </div>
+
+        <div class="cart-item-controls" id="cart-item-controls-{{ item.cart_id }}">
+          <form method="POST" action="{{ url_for('update_cart') }}" id="update-form-{{ item.cart_id }}" class="qty-update-form">
+            <input type="hidden" name="cart_id" value="{{ item.cart_id }}" />
+            <div class="qty-controls">
+              <button type="button" class="qty-btn"
+                      id="qty-dec-{{ item.cart_id }}"
+                      onclick="adjustQty('qty-{{ item.cart_id }}', -1)">−</button>
+              <input type="number"
+                     id="qty-{{ item.cart_id }}"
+                     name="quantity"
+                     value="{{ item.quantity }}"
+                     min="0" max="99"
+                     class="qty-input"
+                     onchange="this.form.submit()" />
+              <button type="button" class="qty-btn"
+                      id="qty-inc-{{ item.cart_id }}"
+                      onclick="adjustQty('qty-{{ item.cart_id }}', 1)">+</button>
+            </div>
+          </form>
+
+          <p class="cart-item-subtotal" id="cart-item-subtotal-{{ item.cart_id }}">
+            ${{ "%.2f"|format(item.price * item.quantity) }}
+          </p>
+
+          <a href="{{ url_for('remove_from_cart', cart_id=item.cart_id) }}"
+             id="remove-item-{{ item.cart_id }}"
+             class="remove-btn"
+             title="Remove item">🗑️</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Cart Summary -->
+    <div id="cart-summary" class="cart-summary">
+      <h2 id="summary-title" class="summary-title">Order Summary</h2>
+
+      <div class="summary-row" id="summary-subtotal">
+        <span>Subtotal</span>
+        <span id="summary-subtotal-val">${{ "%.2f"|format(total) }}</span>
+      </div>
+      <div class="summary-row" id="summary-shipping">
+        <span>Shipping</span>
+        <span id="summary-shipping-val">{% if total >= 50 %}FREE{% else %}$5.99{% endif %}</span>
+      </div>
+      <div class="summary-row summary-total" id="summary-total">
+        <span>Total</span>
+        <span id="summary-total-val">
+          ${{ "%.2f"|format(total + (0 if total >= 50 else 5.99)) }}
+        </span>
+      </div>
+
+      {% if total < 50 %}
+      <div id="free-shipping-notice" class="free-shipping-notice">
+        🚚 Add ${{ "%.2f"|format(50 - total) }} more for free shipping!
+      </div>
+      {% else %}
+      <div id="free-shipping-achieved" class="free-shipping-achieved">
+        🎉 You qualify for free shipping!
+      </div>
+      {% endif %}
+
+      <div class="summary-actions">
+        <a href="{{ url_for('checkout') }}" id="checkout-btn" class="btn btn-primary btn-full btn-lg">
+          Proceed to Checkout →
+        </a>
+        <a href="{{ url_for('products') }}" id="continue-shopping-btn" class="btn btn-ghost btn-full">
+          ← Continue Shopping
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  {% else %}
+  <div id="empty-cart" class="empty-state">
+    <div class="empty-icon">🛒</div>
+    <h2 id="empty-cart-title">Your Cart is Empty</h2>
+    <p id="empty-cart-msg">Looks like you haven't added anything yet.</p>
+    <a href="{{ url_for('products') }}" id="start-shopping-btn" class="btn btn-primary">Start Shopping</a>
+  </div>
+  {% endif %}
+
+</div>
+
+<script>
+  function adjustQty(inputId, delta) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    input.value = Math.max(0, parseInt(input.value || 0) + delta);
+    input.form.submit();
+  }
+</script>
+{% endblock %}

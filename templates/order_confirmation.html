@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Order Confirmed{% endblock %}
+
+{% block content %}
+<div id="confirmation-page" class="page-container confirmation-page">
+
+  <div id="confirmation-card" class="confirmation-card">
+    <div id="success-animation" class="success-anim">
+      <div class="success-circle" id="success-circle">
+        <span class="success-check" id="success-check">✓</span>
+      </div>
+    </div>
+
+    <h1 id="confirmation-title" class="confirmation-title">Order Confirmed! 🎉</h1>
+    <p id="confirmation-msg" class="confirmation-msg">
+      Thank you! Your order has been placed successfully.
+    </p>
+
+    {% if order %}
+    <div id="order-number-box" class="order-number-box">
+      <p class="on-label">Order Number</p>
+      <p id="confirmed-order-number" class="on-value">{{ order.order_number }}</p>
+    </div>
+
+    <div id="order-detail-info" class="conf-detail-grid">
+      <div class="conf-detail-item" id="conf-status">
+        <span class="cd-label">Status</span>
+        <span class="cd-val status-badge status-{{ order.status|lower }}" id="conf-status-val">{{ order.status }}</span>
+      </div>
+      <div class="conf-detail-item" id="conf-amount">
+        <span class="cd-label">Amount Paid</span>
+        <span class="cd-val" id="conf-amount-val">${{ "%.2f"|format(order.total_amount) }}</span>
+      </div>
+      <div class="conf-detail-item" id="conf-address">
+        <span class="cd-label">Deliver To</span>
+        <span class="cd-val" id="conf-address-val">{{ order.shipping_address }}</span>
+      </div>
+      <div class="conf-detail-item" id="conf-date">
+        <span class="cd-label">Order Date</span>
+        <span class="cd-val" id="conf-date-val">{{ order.created_at }}</span>
+      </div>
+    </div>
+    {% endif %}
+
+    <div id="confirmation-actions" class="confirmation-actions">
+      <a href="{{ url_for('orders') }}"  id="view-orders-btn"  class="btn btn-primary btn-lg">📦 View My Orders</a>
+      <a href="{{ url_for('products') }}" id="continue-shopping-conf-btn" class="btn btn-ghost btn-lg">🛍️ Continue Shopping</a>
+    </div>
+
+    <div id="what-next-box" class="what-next-box">
+      <h3 id="what-next-title">What Happens Next?</h3>
+      <div class="next-steps">
+        <div class="next-step" id="ns-1"><span class="ns-icon">📧</span><span>Confirmation email sent</span></div>
+        <div class="next-step" id="ns-2"><span class="ns-icon">📦</span><span>Order being prepared</span></div>
+        <div class="next-step" id="ns-3"><span class="ns-icon">🚚</span><span>Shipped within 2–3 days</span></div>
+        <div class="next-step" id="ns-4"><span class="ns-icon">🏠</span><span>Delivered to your door</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

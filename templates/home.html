@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- Hero Banner -->
+<section id="hero-section" class="hero">
+  <div class="hero-content">
+    <div id="hero-badge" class="hero-badge">✨ Welcome to AryaMart</div>
+    <h1 id="hero-title" class="hero-title">
+      Your Smart Store,<br /><span class="gradient-text">AryaMart</span>
+    </h1>
+    <p id="hero-subtitle" class="hero-subtitle">
+      Premium products, unbeatable prices, seamless experience.
+    </p>
+    <div class="hero-actions">
+      <a href="{{ url_for('products') }}" id="hero-shop-btn" class="btn btn-primary btn-lg">
+        Shop Now →
+      </a>
+      {% if not user %}
+      <a href="{{ url_for('signup') }}" id="hero-join-btn" class="btn btn-ghost btn-lg">
+        Join Free
+      </a>
+      {% endif %}
+    </div>
+    <div class="hero-stats" id="hero-stats">
+      <div class="stat" id="stat-products"><strong>12+</strong><span>Products</span></div>
+      <div class="stat" id="stat-users"><strong>1K+</strong><span>Customers</span></div>
+      <div class="stat" id="stat-satisfaction"><strong>99%</strong><span>Satisfied</span></div>
+    </div>
+  </div>
+  <div class="hero-visual" id="hero-visual">
+    <div class="hero-orb orb-1"></div>
+    <div class="hero-orb orb-2"></div>
+    <div class="hero-orb orb-3"></div>
+    <div class="floating-card fc-1" id="fc-headphones">🎧 Headphones Pro<br/><small>$149.99</small></div>
+    <div class="floating-card fc-2" id="fc-watch">⌚ Smart Watch<br/><small>$249.99</small></div>
+    <div class="floating-card fc-3" id="fc-rating">⭐ 4.9 / 5.0<br/><small>Top Rated</small></div>
+  </div>
+</section>
+
+<!-- Category Pills -->
+<section id="categories-section" class="categories-section">
+  <div class="section-inner">
+    <h2 id="categories-title" class="section-title">Browse by Category</h2>
+    <div id="category-list" class="category-pills">
+      <a href="{{ url_for('products') }}" id="cat-all" class="pill pill-active">All</a>
+      {% for cat in categories %}
+      <a href="{{ url_for('products', category=cat.category) }}"
+         id="cat-{{ loop.index }}"
+         class="pill">{{ cat.category }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products -->
+<section id="featured-section" class="products-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 id="featured-title" class="section-title">Featured Products</h2>
+      <a href="{{ url_for('products') }}" id="view-all-link" class="view-all-link">View All →</a>
+    </div>
+
+    <div id="product-grid" class="product-grid">
+      {% for p in products %}
+      <div class="product-card" id="product-card-{{ p.id }}">
+        <a href="{{ url_for('product_detail', product_id=p.id) }}" id="product-link-{{ p.id }}" class="product-img-link">
+          <div class="product-img-wrap">
+            <img src="{{ p.image_url }}" alt="{{ p.name }}" id="product-img-{{ p.id }}" class="product-img" loading="lazy" />
+            <div class="product-overlay">
+              <span>Quick View</span>
+            </div>
+          </div>
+        </a>
+        <div class="product-body">
+          <span class="product-category" id="product-cat-{{ p.id }}">{{ p.category }}</span>
+          <h3 class="product-name" id="product-name-{{ p.id }}">
+            <a href="{{ url_for('product_detail', product_id=p.id) }}">{{ p.name }}</a>
+          </h3>
+          <p class="product-desc" id="product-desc-{{ p.id }}">{{ p.description[:60] }}…</p>
+          <div class="product-footer">
+            <span class="product-price" id="product-price-{{ p.id }}">${{ "%.2f"|format(p.price) }}</span>
+            {% if user %}
+            <form method="POST" action="{{ url_for('add_to_cart') }}" id="atc-form-{{ p.id }}" class="atc-form">
+              <input type="hidden" name="product_id" value="{{ p.id }}" />
+              <input type="hidden" name="quantity"   value="1" />
+              <button type="submit" id="atc-btn-{{ p.id }}" class="btn btn-sm btn-primary">
+                🛒 Add
+              </button>
+            </form>
+            {% else %}
+            <a href="{{ url_for('login') }}" id="login-to-buy-{{ p.id }}" class="btn btn-sm btn-ghost">Login to Buy</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Value Props -->
+<section id="value-section" class="value-section">
+  <div class="value-grid" id="value-grid">
+    <div class="value-card" id="vc-shipping">
+      <div class="value-icon">🚚</div>
+      <h3>Free Shipping</h3>
+      <p>On all orders over $50</p>
+    </div>
+    <div class="value-card" id="vc-secure">
+      <div class="value-icon">🔐</div>
+      <h3>Secure Payments</h3>
+      <p>256-bit SSL encryption</p>
+    </div>
+    <div class="value-card" id="vc-returns">
+      <div class="value-icon">↩️</div>
+      <h3>30-Day Returns</h3>
+      <p>Hassle-free return policy</p>
+    </div>
+    <div class="value-card" id="vc-support">
+      <div class="value-icon">💬</div>
+      <h3>24/7 Support</h3>
+      <p>We're always here to help</p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Search Order{% endblock %}
+
+{% block content %}
+<div id="search-order-page" class="page-container">
+
+  <div id="search-order-header" class="page-header">
+    <h1 id="search-order-title" class="page-title">🔍 Search Order</h1>
+    <p id="search-order-subtitle" class="page-subtitle">
+      Enter your order number to track your delivery
+    </p>
+  </div>
+
+  <!-- Search Form -->
+  <div id="search-order-form-wrap" class="search-order-wrap">
+    <form id="search-order-form" method="POST" action="{{ url_for('search_order') }}" novalidate>
+      <div class="search-order-bar" id="search-order-bar">
+        <div class="input-wrapper" id="order-input-wrap">
+          <span class="input-icon">📋</span>
+          <input
+            type="text"
+            id="order_number"
+            name="order_number"
+            class="form-input search-order-input"
+            placeholder="e.g. ORD-A1B2C3D4"
+            autocomplete="off"
+            value="{{ request.form.get('order_number', '') }}"
+            required
+          />
+        </div>
+        <button type="submit" id="search-order-btn" class="btn btn-primary btn-lg">
+          🔍 Track Order
+        </button>
+      </div>
+    </form>
+
+    <p id="search-order-hint" class="search-hint">
+      💡 You can find your order number in the confirmation page or your <a href="{{ url_for('orders') }}" id="orders-link-hint">My Orders</a> page.
+    </p>
+  </div>
+
+  <!-- Result -->
+  {% if result %}
+  <div id="order-result" class="order-result-card">
+    <div class="result-header" id="result-header">
+      <h2 id="result-order-number">{{ result.order_number }}</h2>
+      <span class="status-badge status-{{ result.status|lower }}" id="result-status">
+        {% if result.status == 'Confirmed' %}✅{% elif result.status == 'Shipped' %}🚚{% elif result.status == 'Delivered' %}📬{% else %}⏳{% endif %}
+        {{ result.status }}
+      </span>
+    </div>
+
+    <!-- Timeline -->
+    <div id="order-timeline" class="order-timeline">
+      {% set statuses = ['Pending', 'Confirmed', 'Shipped', 'Delivered'] %}
+      {% for st in statuses %}
+      <div class="timeline-step {% if st == result.status %}active{% elif statuses.index(st) < statuses.index(result.status) %}done{% endif %}"
+           id="timeline-{{ loop.index }}">
+        <div class="tl-dot">
+          {% if statuses.index(st) < statuses.index(result.status) %}✓
+          {% elif st == result.status %}●
+          {% else %}○{% endif %}
+        </div>
+        <div class="tl-label">{{ st }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Order Details -->
+    <div id="result-details" class="result-details-grid">
+      <div class="rd-item" id="rd-date">
+        <span class="rd-label">Ordered On</span>
+        <span class="rd-val" id="result-date">{{ result.created_at[:10] }}</span>
+      </div>
+      <div class="rd-item" id="rd-amount">
+        <span class="rd-label">Total Amount</span>
+        <span class="rd-val" id="result-amount">${{ "%.2f"|format(result.total_amount) }}</span>
+      </div>
+      <div class="rd-item" id="rd-address">
+        <span class="rd-label">Shipping Address</span>
+        <span class="rd-val" id="result-address">{{ result.shipping_address }}</span>
+      </div>
+    </div>
+
+    <!-- Items in this order -->
+    {% if order_items %}
+    <div id="result-items-section" class="result-items-section">
+      <h3 id="result-items-title" class="result-items-title">Items Ordered</h3>
+      <div id="result-items-list" class="checkout-items-list">
+        {% for item in order_items %}
+        <div class="checkout-item" id="result-item-{{ loop.index }}">
+          <img src="{{ item.image_url }}" alt="{{ item.name }}" class="co-item-img"
+               id="result-item-img-{{ loop.index }}" />
+          <div class="co-item-info">
+            <p class="co-item-name" id="result-item-name-{{ loop.index }}">{{ item.name }}</p>
+            <p class="co-item-qty"  id="result-item-qty-{{ loop.index }}">Qty: {{ item.quantity }}</p>
+          </div>
+          <p class="co-item-price" id="result-item-price-{{ loop.index }}">${{ "%.2f"|format(item.price * item.quantity) }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="result-actions" id="result-actions">
+      <a href="{{ url_for('orders') }}" id="back-to-orders-btn" class="btn btn-ghost">← All Orders</a>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

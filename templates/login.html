@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div id="login-page" class="auth-page">
+  <div class="auth-card" id="login-card">
+
+    <div class="auth-brand">
+      <div class="auth-logo">🛒</div>
+      <h1 id="login-title" class="auth-title">Welcome Back</h1>
+      <p id="login-subtitle" class="auth-subtitle">Sign in to continue shopping</p>
+    </div>
+
+    <form id="login-form" class="auth-form" method="POST" action="{{ url_for('login') }}" novalidate>
+
+      <div class="form-group" id="fg-username">
+        <label for="username" class="form-label">Username</label>
+        <div class="input-wrapper">
+          <span class="input-icon">👤</span>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-input"
+            placeholder="Enter your username"
+            autocomplete="username"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group" id="fg-password">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-input"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+          />
+          <button type="button" id="toggle-password" class="toggle-pw" title="Show/hide password">👁️</button>
+        </div>
+      </div>
+
+      <button type="submit" id="login-btn" class="btn btn-primary btn-full btn-lg">
+        Sign In →
+      </button>
+
+    </form>
+
+    <p id="login-redirect" class="auth-redirect">
+      Don't have an account?
+      <a href="{{ url_for('signup') }}" id="goto-signup">Create one here</a>
+    </p>
+
+    <div id="test-credentials" class="test-creds-box">
+      <p>🧪 <strong>Test:</strong> Use any credentials you signed up with</p>
+    </div>
+
+  </div>
+
+  <div class="auth-side" id="login-side">
+    <div class="auth-side-content">
+      <h2>Shop with AryaMart</h2>
+      <p>Thousands of products at your fingertips.</p>
+      <div class="feature-list">
+        <div class="feature-item" id="feature-secure">🔐 Secure Checkout</div>
+        <div class="feature-item" id="feature-track">📦 Order Tracking</div>
+        <div class="feature-item" id="feature-returns">↩️ Easy Returns</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const pwInput = document.getElementById("password");
+  const toggleBtn = document.getElementById("toggle-password");
+  toggleBtn.addEventListener("click", () => {
+    pwInput.type = pwInput.type === "password" ? "text" : "password";
+    toggleBtn.textContent = pwInput.type === "password" ? "👁️" : "🙈";
+  });
+</script>
+{% endblock %}

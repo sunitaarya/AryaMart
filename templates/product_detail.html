@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div id="product-detail-page" class="page-container">
+
+  <div id="breadcrumb" class="breadcrumb">
+    <a href="{{ url_for('home') }}" id="bc-home">Home</a> /
+    <a href="{{ url_for('products') }}" id="bc-products">Products</a> /
+    <a href="{{ url_for('products', category=product.category) }}" id="bc-category">{{ product.category }}</a> /
+    <span id="bc-current">{{ product.name }}</span>
+  </div>
+
+  <div id="product-detail-grid" class="product-detail-grid">
+
+    <!-- Image -->
+    <div id="product-image-section" class="product-detail-img-wrap">
+      <img
+        src="{{ product.image_url }}"
+        alt="{{ product.name }}"
+        id="detail-product-img"
+        class="detail-img"
+      />
+      <div id="product-badge" class="detail-badge">{{ product.category }}</div>
+    </div>
+
+    <!-- Info -->
+    <div id="product-info-section" class="product-detail-info">
+      <h1 id="detail-product-name" class="detail-name">{{ product.name }}</h1>
+
+      <div class="detail-rating" id="detail-rating">
+        <span class="stars">★★★★☆</span>
+        <span class="rating-count" id="rating-count">(128 reviews)</span>
+      </div>
+
+      <p id="detail-product-price" class="detail-price">${{ "%.2f"|format(product.price) }}</p>
+
+      <p id="detail-product-description" class="detail-description">{{ product.description }}</p>
+
+      <div id="detail-stock" class="detail-stock
+        {% if product.stock > 20 %}in-stock{% elif product.stock > 0 %}low-stock{% else %}out-stock{% endif %}">
+        {% if product.stock > 20 %}✅ In Stock ({{ product.stock }} available)
+        {% elif product.stock > 0 %}⚠️ Only {{ product.stock }} left!
+        {% else %}❌ Out of Stock{% endif %}
+      </div>
+
+      {% if user %}
+      <form method="POST" action="{{ url_for('add_to_cart') }}" id="detail-add-cart-form" class="detail-cart-form">
+        <input type="hidden" name="product_id" value="{{ product.id }}" />
+
+        <div class="qty-selector" id="qty-selector">
+          <label for="detail-qty" class="form-label">Quantity</label>
+          <div class="qty-controls">
+            <button type="button" id="qty-decrease" class="qty-btn" onclick="changeQty(-1)">−</button>
+            <input type="number" id="detail-qty" name="quantity" value="1" min="1" max="{{ product.stock }}" class="qty-input" />
+            <button type="button" id="qty-increase" class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+        </div>
+
+        <div class="detail-cart-actions">
+          <button type="submit" id="detail-add-to-cart-btn" class="btn btn-primary btn-lg">
+            🛒 Add to Cart
+          </button>
+          <a href="{{ url_for('cart') }}" id="detail-view-cart-btn" class="btn btn-ghost btn-lg">View Cart</a>
+        </div>
+      </form>
+      {% else %}
+      <div class="detail-cart-actions">
+        <a href="{{ url_for('login') }}" id="detail-login-to-buy" class="btn btn-primary btn-lg">
+          🔐 Login to Purchase
+        </a>
+      </div>
+      {% endif %}
+
+      <div id="product-meta" class="product-meta-list">
+        <div class="meta-item" id="meta-category">
+          <span class="meta-label">Category:</span>
+          <span class="meta-val" id="meta-cat-val">{{ product.category }}</span>
+        </div>
+        <div class="meta-item" id="meta-sku">
+          <span class="meta-label">SKU:</span>
+          <span class="meta-val" id="meta-sku-val">SKU-{{ "%05d"|format(product.id) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  {% if related %}
+  <section id="related-section" class="related-section">
+    <h2 id="related-title" class="section-title">Related Products</h2>
+    <div id="related-grid" class="product-grid">
+      {% for p in related %}
+      <div class="product-card" id="related-card-{{ p.id }}">
+        <a href="{{ url_for('product_detail', product_id=p.id) }}" id="related-link-{{ p.id }}" class="product-img-link">
+          <div class="product-img-wrap">
+            <img src="{{ p.image_url }}" alt="{{ p.name }}" class="product-img" loading="lazy" />
+            <div class="product-overlay"><span>View</span></div>
+          </div>
+        </a>
+        <div class="product-body">
+          <h3 class="product-name" id="related-name-{{ p.id }}">{{ p.name }}</h3>
+          <div class="product-footer">
+            <span class="product-price" id="related-price-{{ p.id }}">${{ "%.2f"|format(p.price) }}</span>
+            {% if user %}
+            <form method="POST" action="{{ url_for('add_to_cart') }}" id="rel-atc-{{ p.id }}">
+              <input type="hidden" name="product_id" value="{{ p.id }}" />
+              <input type="hidden" name="quantity" value="1" />
+              <button type="submit" id="rel-atc-btn-{{ p.id }}" class="btn btn-sm btn-primary">🛒</button>
+            </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+</div>
+
+<script>
+  const qtyInput = document.getElementById("detail-qty");
+  function changeQty(delta) {
+    if (!qtyInput) return;
+    const newVal = Math.max(1, parseInt(qtyInput.value || 1) + delta);
+    qtyInput.value = newVal;
+  }
+</script>
+{% endblock %}

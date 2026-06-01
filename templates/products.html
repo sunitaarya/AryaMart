@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}Products{% endblock %}
+
+{% block content %}
+<div id="products-page" class="page-container">
+
+  <!-- Page header -->
+  <div id="products-header" class="page-header">
+    <h1 id="products-title" class="page-title">All Products</h1>
+    <p id="products-subtitle" class="page-subtitle">
+      {% if query %}Showing results for "<strong>{{ query }}</strong>"{% else %}Discover our full catalogue{% endif %}
+    </p>
+  </div>
+
+  <!-- Search & Filters Bar -->
+  <div id="filters-bar" class="filters-bar">
+    <form id="search-form" method="GET" action="{{ url_for('products') }}" class="search-bar-form">
+      <div class="search-input-wrap" id="search-input-wrap">
+        <span class="search-icon-inner">🔍</span>
+        <input
+          type="text"
+          id="search-input"
+          name="q"
+          class="search-input"
+          placeholder="Search products…"
+          value="{{ query }}"
+          autocomplete="off"
+        />
+        {% if query %}
+        <a href="{{ url_for('products') }}" id="clear-search-btn" class="clear-search">✕</a>
+        {% endif %}
+      </div>
+
+      <select id="category-filter" name="category" class="filter-select" onchange="this.form.submit()">
+        <option value="">All Categories</option>
+        {% for cat in categories %}
+        <option value="{{ cat.category }}" {% if selected_category == cat.category %}selected{% endif %}>
+          {{ cat.category }}
+        </option>
+        {% endfor %}
+      </select>
+
+      <select id="sort-filter" name="sort" class="filter-select" onchange="this.form.submit()">
+        <option value="name"       {% if sort=='name'       %}selected{% endif %}>Sort: Name A–Z</option>
+        <option value="price_asc"  {% if sort=='price_asc'  %}selected{% endif %}>Price: Low → High</option>
+        <option value="price_desc" {% if sort=='price_desc' %}selected{% endif %}>Price: High → Low</option>
+      </select>
+
+      <button type="submit" id="search-submit-btn" class="btn btn-primary">Search</button>
+    </form>
+  </div>
+
+  <!-- Results count -->
+  <p id="results-count" class="results-count">
+    {{ products|length }} product{{ 's' if products|length != 1 }} found
+  </p>
+
+  <!-- Product Grid -->
+  {% if products %}
+  <div id="products-grid" class="product-grid">
+    {% for p in products %}
+    <div class="product-card" id="product-card-{{ p.id }}">
+      <a href="{{ url_for('product_detail', product_id=p.id) }}" id="product-img-link-{{ p.id }}" class="product-img-link">
+        <div class="product-img-wrap">
+          <img src="{{ p.image_url }}" alt="{{ p.name }}" id="product-img-{{ p.id }}" class="product-img" loading="lazy" />
+          <div class="product-overlay"><span>View Details</span></div>
+        </div>
+      </a>
+      <div class="product-body">
+        <span class="product-category" id="product-cat-{{ p.id }}">{{ p.category }}</span>
+        <h3 class="product-name" id="product-name-{{ p.id }}">
+          <a href="{{ url_for('product_detail', product_id=p.id) }}" id="product-title-link-{{ p.id }}">{{ p.name }}</a>
+        </h3>
+        <p class="product-desc" id="product-desc-{{ p.id }}">{{ p.description[:75] }}…</p>
+        <div class="product-footer">
+          <span class="product-price" id="product-price-{{ p.id }}">${{ "%.2f"|format(p.price) }}</span>
+          <span class="product-stock" id="product-stock-{{ p.id }}">{{ p.stock }} left</span>
+        </div>
+        <div class="product-actions">
+          <a href="{{ url_for('product_detail', product_id=p.id) }}" id="view-btn-{{ p.id }}" class="btn btn-sm btn-ghost">Details</a>
+          {% if user %}
+          <form method="POST" action="{{ url_for('add_to_cart') }}" id="atc-form-{{ p.id }}" class="atc-form-inline">
+            <input type="hidden" name="product_id" value="{{ p.id }}" />
+            <input type="hidden" name="quantity"   value="1" />
+            <button type="submit" id="atc-btn-{{ p.id }}" class="btn btn-sm btn-primary">🛒 Add to Cart</button>
+          </form>
+          {% else %}
+          <a href="{{ url_for('login') }}" id="login-btn-{{ p.id }}" class="btn btn-sm btn-primary">Login to Buy</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% else %}
+  <div id="no-results" class="empty-state">
+    <div class="empty-icon">🔍</div>
+    <h2 id="no-results-title">No Products Found</h2>
+    <p id="no-results-msg">Try a different search term or browse all categories.</p>
+    <a href="{{ url_for('products') }}" id="browse-all-btn" class="btn btn-primary">Browse All Products</a>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}AryaMart{% endblock %} | AryaMart</title>
+  <meta name="description" content="AryaMart – Premium e-commerce test application." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+<!-- ── Navbar ── -->
+<nav id="navbar" class="navbar">
+  <div class="nav-inner">
+    <a href="{{ url_for('home') }}" id="nav-logo" class="logo">
+      🛒 <span>AryaMart</span>
+    </a>
+
+    <div class="nav-links" id="nav-links">
+      <a href="{{ url_for('home') }}"     id="nav-home"     class="nav-link">Home</a>
+      <a href="{{ url_for('products') }}" id="nav-products" class="nav-link">Products</a>
+      {% if user %}
+      <a href="{{ url_for('orders') }}"      id="nav-orders"      class="nav-link">My Orders</a>
+      <a href="{{ url_for('search_order') }}" id="nav-search-order" class="nav-link">Search Order</a>
+      {% endif %}
+    </div>
+
+    <div class="nav-actions">
+      <a href="{{ url_for('products') }}" id="nav-search-icon" class="icon-btn" title="Search Products">🔍</a>
+
+      {% if user %}
+      <a href="{{ url_for('cart') }}" id="nav-cart" class="icon-btn cart-btn" title="Cart">
+        🛒 <span id="cart-badge" class="cart-badge">{{ cart_count }}</span>
+      </a>
+      <div class="user-menu" id="user-menu">
+        <button class="icon-btn user-btn" id="user-menu-btn">👤 {{ user.full_name.split()[0] }} ▾</button>
+        <div class="dropdown" id="user-dropdown">
+          <a href="{{ url_for('orders') }}"  id="dd-orders"  class="dd-item">📦 My Orders</a>
+          <a href="{{ url_for('cart') }}"    id="dd-cart"    class="dd-item">🛒 Cart</a>
+          <hr class="dd-divider" />
+          <a href="{{ url_for('logout') }}"  id="dd-logout"  class="dd-item danger">🚪 Logout</a>
+        </div>
+      </div>
+      {% else %}
+      <a href="{{ url_for('login') }}"  id="nav-login"  class="btn btn-ghost">Login</a>
+      <a href="{{ url_for('signup') }}" id="nav-signup" class="btn btn-primary">Sign Up</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+<!-- ── Flash messages ── -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div id="flash-container" class="flash-container">
+    {% for category, message in messages %}
+    <div id="flash-{{ loop.index }}" class="flash flash-{{ category }}">
+      <span class="flash-icon">
+        {% if category == 'success' %}✅{% elif category == 'error' %}❌{% elif category == 'warning' %}⚠️{% else %}ℹ️{% endif %}
+      </span>
+      {{ message }}
+      <button class="flash-close" onclick="this.parentElement.remove()">✕</button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endwith %}
+
+<!-- ── Page content ── -->
+<main id="main-content">
+  {% block content %}{% endblock %}
+</main>
+
+<!-- ── Footer ── -->
+<footer id="footer" class="footer">
+  <div class="footer-inner">
+    <p>© 2024 AryaMart — E-Commerce Test Application</p>
+    <p class="footer-sub">Built for GUI automation testing · Flask + SQLite</p>
+  </div>
+</footer>
+
+<script>
+  // User dropdown toggle
+  const menuBtn = document.getElementById("user-menu-btn");
+  const dropdown = document.getElementById("user-dropdown");
+  if (menuBtn && dropdown) {
+    menuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle("open");
+    });
+    document.addEventListener("click", () => dropdown.classList.remove("open"));
+  }
+
+  // Auto-dismiss flash messages
+  setTimeout(() => {
+    document.querySelectorAll(".flash").forEach(el => {
+      el.style.opacity = "0";
+      setTimeout(() => el.remove(), 300);
+    });
+  }, 4000);
+</script>
+</body>
+</html>
