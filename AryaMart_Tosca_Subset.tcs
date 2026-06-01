@@ -1,272 +1,395 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TOSCA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="15.0.0">
-  <Folder Name="AryaMart">
-    <Description>Automated Test Hierarchy for AryaMart E-Commerce Web Application</Description>
-    
-    <!-- ========================================== -->
-    <!-- TOSCA MODULES                              -->
-    <!-- ========================================== -->
-    <Folder Name="Modules">
-      <Description>Model-Based Web Page Modules mapped via TBox HTML Engine</Description>
-      
-      <Module Name="Header_Navbar">
-        <ModuleAttribute Name="Logo" TechnicalId="id==nav-logo" ControlType="Link" />
-        <ModuleAttribute Name="Home_Link" TechnicalId="id==nav-home" ControlType="Link" />
-        <ModuleAttribute Name="Products_Link" TechnicalId="id==nav-products" ControlType="Link" />
-        <ModuleAttribute Name="Orders_Link" TechnicalId="id==nav-orders" ControlType="Link" />
-        <ModuleAttribute Name="Search_Order_Link" TechnicalId="id==nav-search-order" ControlType="Link" />
-        <ModuleAttribute Name="Cart_Icon" TechnicalId="id==nav-cart" ControlType="Link" />
-        <ModuleAttribute Name="Cart_Badge" TechnicalId="id==cart-badge" ControlType="HtmlControl" />
-        <ModuleAttribute Name="User_Dropdown" TechnicalId="id==user-menu-btn" ControlType="Button" />
-        <ModuleAttribute Name="Logout_Link" TechnicalId="id==dd-logout" ControlType="Link" />
-      </Module>
+<Subset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Objects>
+    <!-- Root Folder -->
+    <Object Class="TCFolder" Name="AryaMart">
+      <Parameters>
+        <Parameter Name="Description" Value="Automated Test Hierarchy for AryaMart E-Commerce Web Application" />
+      </Parameters>
+      <Objects>
+        
+        <!-- Modules Folder -->
+        <Object Class="TCFolder" Name="Modules">
+          <Parameters>
+            <Parameter Name="Description" Value="Model-Based Web Page Modules mapped via TBox HTML Engine" />
+          </Parameters>
+          <Objects>
+            
+            <Object Class="Module" Name="Header_Navbar">
+              <Objects>
+                <Object Class="ModuleAttribute" Name="Logo"><Parameters><Parameter Name="TechnicalId" Value="id==nav-logo" /><Parameter Name="ControlType" Value="Link" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Home_Link"><Parameters><Parameter Name="TechnicalId" Value="id==nav-home" /><Parameter Name="ControlType" Value="Link" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Products_Link"><Parameters><Parameter Name="TechnicalId" Value="id==nav-products" /><Parameter Name="ControlType" Value="Link" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Orders_Link"><Parameters><Parameter Name="TechnicalId" Value="id==nav-orders" /><Parameter Name="ControlType" Value="Link" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Search_Order_Link"><Parameters><Parameter Name="TechnicalId" Value="id==nav-search-order" /><Parameter Name="ControlType" Value="Link" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Cart_Icon"><Parameters><Parameter Name="TechnicalId" Value="id==nav-cart" /><Parameter Name="ControlType" Value="Link" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Cart_Badge"><Parameters><Parameter Name="TechnicalId" Value="id==cart-badge" /><Parameter Name="ControlType" Value="HtmlControl" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="User_Dropdown"><Parameters><Parameter Name="TechnicalId" Value="id==user-menu-btn" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Logout_Link"><Parameters><Parameter Name="TechnicalId" Value="id==dd-logout" /><Parameter Name="ControlType" Value="Link" /></Parameters></Object>
+              </Objects>
+            </Object>
 
-      <Module Name="Signup_Page">
-        <ModuleAttribute Name="FullName_Input" TechnicalId="id==full_name" ControlType="TextBox" />
-        <ModuleAttribute Name="Username_Input" TechnicalId="id==username" ControlType="TextBox" />
-        <ModuleAttribute Name="Email_Input" TechnicalId="id==email" ControlType="TextBox" />
-        <ModuleAttribute Name="Phone_Input" TechnicalId="id==phone" ControlType="TextBox" />
-        <ModuleAttribute Name="Password_Input" TechnicalId="id==password" ControlType="TextBox" />
-        <ModuleAttribute Name="ConfirmPassword_Input" TechnicalId="id==confirm_password" ControlType="TextBox" />
-        <ModuleAttribute Name="Terms_Checkbox" TechnicalId="id==terms" ControlType="CheckBox" />
-        <ModuleAttribute Name="Signup_Button" TechnicalId="id==signup-btn" ControlType="Button" />
-        <ModuleAttribute Name="Login_Link" TechnicalId="id==goto-login" ControlType="Link" />
-        <ModuleAttribute Name="Strength_Bar" TechnicalId="id==strength-bar" ControlType="HtmlControl" />
-      </Module>
+            <Object Class="Module" Name="Signup_Page">
+              <Objects>
+                <Object Class="ModuleAttribute" Name="FullName_Input"><Parameters><Parameter Name="TechnicalId" Value="id==full_name" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Username_Input"><Parameters><Parameter Name="TechnicalId" Value="id==username" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Email_Input"><Parameters><Parameter Name="TechnicalId" Value="id==email" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Phone_Input"><Parameters><Parameter Name="TechnicalId" Value="id==phone" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Password_Input"><Parameters><Parameter Name="TechnicalId" Value="id==password" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="ConfirmPassword_Input"><Parameters><Parameter Name="TechnicalId" Value="id==confirm_password" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Terms_Checkbox"><Parameters><Parameter Name="TechnicalId" Value="id==terms" /><Parameter Name="ControlType" Value="CheckBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Signup_Button"><Parameters><Parameter Name="TechnicalId" Value="id==signup-btn" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Login_Link"><Parameters><Parameter Name="TechnicalId" Value="id==goto-login" /><Parameter Name="ControlType" Value="Link" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Strength_Bar"><Parameters><Parameter Name="TechnicalId" Value="id==strength-bar" /><Parameter Name="ControlType" Value="HtmlControl" /></Parameters></Object>
+              </Objects>
+            </Object>
 
-      <Module Name="Login_Page">
-        <ModuleAttribute Name="Username_Input" TechnicalId="id==username" ControlType="TextBox" />
-        <ModuleAttribute Name="Password_Input" TechnicalId="id==password" ControlType="TextBox" />
-        <ModuleAttribute Name="Login_Button" TechnicalId="id==login-btn" ControlType="Button" />
-        <ModuleAttribute Name="ShowHide_Toggle" TechnicalId="id==toggle-password" ControlType="Button" />
-        <ModuleAttribute Name="Signup_Link" TechnicalId="id==goto-signup" ControlType="Link" />
-      </Module>
+            <Object Class="Module" Name="Login_Page">
+              <Objects>
+                <Object Class="ModuleAttribute" Name="Username_Input"><Parameters><Parameter Name="TechnicalId" Value="id==username" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Password_Input"><Parameters><Parameter Name="TechnicalId" Value="id==password" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Login_Button"><Parameters><Parameter Name="TechnicalId" Value="id==login-btn" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="ShowHide_Toggle"><Parameters><Parameter Name="TechnicalId" Value="id==toggle-password" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Signup_Link"><Parameters><Parameter Name="TechnicalId" Value="id==goto-signup" /><Parameter Name="ControlType" Value="Link" /></Parameters></Object>
+              </Objects>
+            </Object>
 
-      <Module Name="Home_Page">
-        <ModuleAttribute Name="Hero_Shop_Button" TechnicalId="id==hero-shop-btn" ControlType="Button" />
-        <ModuleAttribute Name="Hero_Join_Button" TechnicalId="id==hero-join-btn" ControlType="Button" />
-        <ModuleAttribute Name="Category_Pill" TechnicalId="id==cat-1" ControlType="Link" />
-      </Module>
+            <Object Class="Module" Name="Home_Page">
+              <Objects>
+                <Object Class="ModuleAttribute" Name="Hero_Shop_Button"><Parameters><Parameter Name="TechnicalId" Value="id==hero-shop-btn" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Hero_Join_Button"><Parameters><Parameter Name="TechnicalId" Value="id==hero-join-btn" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Category_Pill"><Parameters><Parameter Name="TechnicalId" Value="id==cat-1" /><Parameter Name="ControlType" Value="Link" /></Parameters></Object>
+              </Objects>
+            </Object>
 
-      <Module Name="Products_Page">
-        <ModuleAttribute Name="Search_TextBox" TechnicalId="id==search-input" ControlType="TextBox" />
-        <ModuleAttribute Name="Search_Button" TechnicalId="id==search-submit-btn" ControlType="Button" />
-        <ModuleAttribute Name="Clear_Search_Btn" TechnicalId="id==clear-search-btn" ControlType="Button" />
-        <ModuleAttribute Name="Category_Dropdown" TechnicalId="id==category-filter" ControlType="ComboBox" />
-        <ModuleAttribute Name="Sort_Dropdown" TechnicalId="id==sort-filter" ControlType="ComboBox" />
-      </Module>
+            <Object Class="Module" Name="Products_Page">
+              <Objects>
+                <Object Class="ModuleAttribute" Name="Search_TextBox"><Parameters><Parameter Name="TechnicalId" Value="id==search-input" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Search_Button"><Parameters><Parameter Name="TechnicalId" Value="id==search-submit-btn" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Clear_Search_Btn"><Parameters><Parameter Name="TechnicalId" Value="id==clear-search-btn" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Category_Dropdown"><Parameters><Parameter Name="TechnicalId" Value="id==category-filter" /><Parameter Name="ControlType" Value="ComboBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Sort_Dropdown"><Parameters><Parameter Name="TechnicalId" Value="id==sort-filter" /><Parameter Name="ControlType" Value="ComboBox" /></Parameters></Object>
+              </Objects>
+            </Object>
 
-      <Module Name="Product_Detail">
-        <ModuleAttribute Name="Detail_Qty" TechnicalId="id==detail-qty" ControlType="TextBox" />
-        <ModuleAttribute Name="Qty_Inc" TechnicalId="id==qty-increase" ControlType="Button" />
-        <ModuleAttribute Name="Qty_Dec" TechnicalId="id==qty-decrease" ControlType="Button" />
-        <ModuleAttribute Name="AddToCart_Button" TechnicalId="id==detail-add-to-cart-btn" ControlType="Button" />
-        <ModuleAttribute Name="LoginToBuy_Button" TechnicalId="id==detail-login-to-buy" ControlType="Link" />
-      </Module>
+            <Object Class="Module" Name="Product_Detail">
+              <Objects>
+                <Object Class="ModuleAttribute" Name="Detail_Qty"><Parameters><Parameter Name="TechnicalId" Value="id==detail-qty" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Qty_Inc"><Parameters><Parameter Name="TechnicalId" Value="id==qty-increase" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Qty_Dec"><Parameters><Parameter Name="TechnicalId" Value="id==qty-decrease" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="AddToCart_Button"><Parameters><Parameter Name="TechnicalId" Value="id==detail-add-to-cart-btn" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="LoginToBuy_Button"><Parameters><Parameter Name="TechnicalId" Value="id==detail-login-to-buy" /><Parameter Name="ControlType" Value="Link" /></Parameters></Object>
+              </Objects>
+            </Object>
 
-      <Module Name="Cart_Page">
-        <ModuleAttribute Name="Qty_Input_Row" TechnicalId="id==qty-{id}" ControlType="TextBox" />
-        <ModuleAttribute Name="Qty_Inc_Row" TechnicalId="id==qty-inc-{id}" ControlType="Button" />
-        <ModuleAttribute Name="Qty_Dec_Row" TechnicalId="id==qty-dec-{id}" ControlType="Button" />
-        <ModuleAttribute Name="Remove_Item_Row" TechnicalId="id==remove-item-{id}" ControlType="Link" />
-        <ModuleAttribute Name="Checkout_Button" TechnicalId="id==checkout-btn" ControlType="Button" />
-        <ModuleAttribute Name="Shipping_Notice" TechnicalId="id==free-shipping-notice" ControlType="HtmlControl" />
-        <ModuleAttribute Name="Shipping_Achieved" TechnicalId="id==free-shipping-achieved" ControlType="HtmlControl" />
-      </Module>
+            <Object Class="Module" Name="Cart_Page">
+              <Objects>
+                <Object Class="ModuleAttribute" Name="Qty_Input_Row"><Parameters><Parameter Name="TechnicalId" Value="id==qty-{id}" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Qty_Inc_Row"><Parameters><Parameter Name="TechnicalId" Value="id==qty-inc-{id}" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Qty_Dec_Row"><Parameters><Parameter Name="TechnicalId" Value="id==qty-dec-{id}" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Remove_Item_Row"><Parameters><Parameter Name="TechnicalId" Value="id==remove-item-{id}" /><Parameter Name="ControlType" Value="Link" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Checkout_Button"><Parameters><Parameter Name="TechnicalId" Value="id==checkout-btn" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Shipping_Notice"><Parameters><Parameter Name="TechnicalId" Value="id==free-shipping-notice" /><Parameter Name="ControlType" Value="HtmlControl" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Shipping_Achieved"><Parameters><Parameter Name="TechnicalId" Value="id==free-shipping-achieved" /><Parameter Name="ControlType" Value="HtmlControl" /></Parameters></Object>
+              </Objects>
+            </Object>
 
-      <Module Name="Checkout_Page">
-        <ModuleAttribute Name="ShippingAddress_Input" TechnicalId="id==shipping_address" ControlType="TextBox" />
-        <ModuleAttribute Name="City_Input" TechnicalId="id==city" ControlType="TextBox" />
-        <ModuleAttribute Name="State_Dropdown" TechnicalId="id==state" ControlType="ComboBox" />
-        <ModuleAttribute Name="ZipCode_Input" TechnicalId="id==zip_code" ControlType="TextBox" />
-        <ModuleAttribute Name="PlaceOrder_Button" TechnicalId="id==place-order-btn" ControlType="Button" />
-      </Module>
+            <Object Class="Module" Name="Checkout_Page">
+              <Objects>
+                <Object Class="ModuleAttribute" Name="ShippingAddress_Input"><Parameters><Parameter Name="TechnicalId" Value="id==shipping_address" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="City_Input"><Parameters><Parameter Name="TechnicalId" Value="id==city" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="State_Dropdown"><Parameters><Parameter Name="TechnicalId" Value="id==state" /><Parameter Name="ControlType" Value="ComboBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="ZipCode_Input"><Parameters><Parameter Name="TechnicalId" Value="id==zip_code" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="PlaceOrder_Button"><Parameters><Parameter Name="TechnicalId" Value="id==place-order-btn" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+              </Objects>
+            </Object>
 
-      <Module Name="Confirmation_Page">
-        <ModuleAttribute Name="Confirmed_Order_No" TechnicalId="id==confirmed-order-number" ControlType="HtmlControl" />
-        <ModuleAttribute Name="Status_Text" TechnicalId="id==conf-status-val" ControlType="HtmlControl" />
-        <ModuleAttribute Name="Amount_Text" TechnicalId="id==conf-amount-val" ControlType="HtmlControl" />
-        <ModuleAttribute Name="Address_Text" TechnicalId="id==conf-address-val" ControlType="HtmlControl" />
-        <ModuleAttribute Name="View_Orders_Button" TechnicalId="id==view-orders-btn" ControlType="Button" />
-      </Module>
+            <Object Class="Module" Name="Confirmation_Page">
+              <Objects>
+                <Object Class="ModuleAttribute" Name="Confirmed_Order_No"><Parameters><Parameter Name="TechnicalId" Value="id==confirmed-order-number" /><Parameter Name="ControlType" Value="HtmlControl" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Status_Text"><Parameters><Parameter Name="TechnicalId" Value="id==conf-status-val" /><Parameter Name="ControlType" Value="HtmlControl" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Amount_Text"><Parameters><Parameter Name="TechnicalId" Value="id==conf-amount-val" /><Parameter Name="ControlType" Value="HtmlControl" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Address_Text"><Parameters><Parameter Name="TechnicalId" Value="id==conf-address-val" /><Parameter Name="ControlType" Value="HtmlControl" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="View_Orders_Button"><Parameters><Parameter Name="TechnicalId" Value="id==view-orders-btn" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+              </Objects>
+            </Object>
 
-      <Module Name="Orders_Page">
-        <ModuleAttribute Name="Search_Order_Link" TechnicalId="class==search-order-link" ControlType="Link" />
-        <ModuleAttribute Name="View_Details_Link" TechnicalId="id==view-order-{id}" ControlType="Link" />
-      </Module>
+            <Object Class="Module" Name="Orders_Page">
+              <Objects>
+                <Object Class="ModuleAttribute" Name="Search_Order_Link"><Parameters><Parameter Name="TechnicalId" Value="class==search-order-link" /><Parameter Name="ControlType" Value="Link" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="View_Details_Link"><Parameters><Parameter Name="TechnicalId" Value="id==view-order-{id}" /><Parameter Name="ControlType" Value="Link" /></Parameters></Object>
+              </Objects>
+            </Object>
 
-      <Module Name="Track_Order_Page">
-        <ModuleAttribute Name="Search_Input" TechnicalId="id==order_number" ControlType="TextBox" />
-        <ModuleAttribute Name="Track_Button" TechnicalId="id==search-order-btn" ControlType="Button" />
-        <ModuleAttribute Name="Result_Order_No" TechnicalId="id==result-order-number" ControlType="HtmlControl" />
-        <ModuleAttribute Name="Result_Status" TechnicalId="id==result-status" ControlType="HtmlControl" />
-        <ModuleAttribute Name="Timeline_Step_1" TechnicalId="id==timeline-1" ControlType="HtmlControl" />
-        <ModuleAttribute Name="Timeline_Step_2" TechnicalId="id==timeline-2" ControlType="HtmlControl" />
-        <ModuleAttribute Name="Timeline_Step_3" TechnicalId="id==timeline-3" ControlType="HtmlControl" />
-        <ModuleAttribute Name="Timeline_Step_4" TechnicalId="id==timeline-4" ControlType="HtmlControl" />
-      </Module>
-    </Folder>
-    
-    <!-- ========================================== -->
-    <!-- TOSCA TESTCASES                            -->
-    <!-- ========================================== -->
-    <Folder Name="TestCases">
-      <Description>Drag-and-Drop TestCase steps corresponding to TP-01 to TP-12</Description>
+            <Object Class="Module" Name="Track_Order_Page">
+              <Objects>
+                <Object Class="ModuleAttribute" Name="Search_Input"><Parameters><Parameter Name="TechnicalId" Value="id==order_number" /><Parameter Name="ControlType" Value="TextBox" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Track_Button"><Parameters><Parameter Name="TechnicalId" Value="id==search-order-btn" /><Parameter Name="ControlType" Value="Button" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Result_Order_No"><Parameters><Parameter Name="TechnicalId" Value="id==result-order-number" /><Parameter Name="ControlType" Value="HtmlControl" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Result_Status"><Parameters><Parameter Name="TechnicalId" Value="id==result-status" /><Parameter Name="ControlType" Value="HtmlControl" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Timeline_Step_1"><Parameters><Parameter Name="TechnicalId" Value="id==timeline-1" /><Parameter Name="ControlType" Value="HtmlControl" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Timeline_Step_2"><Parameters><Parameter Name="TechnicalId" Value="id==timeline-2" /><Parameter Name="ControlType" Value="HtmlControl" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Timeline_Step_3"><Parameters><Parameter Name="TechnicalId" Value="id==timeline-3" /><Parameter Name="ControlType" Value="HtmlControl" /></Parameters></Object>
+                <Object Class="ModuleAttribute" Name="Timeline_Step_4"><Parameters><Parameter Name="TechnicalId" Value="id==timeline-4" /><Parameter Name="ControlType" Value="HtmlControl" /></Parameters></Object>
+              </Objects>
+            </Object>
+          </Objects>
+        </Object>
 
-      <!-- TP-01 -->
-      <TestCase Name="TP-01: User Registration Signup">
-        <TestStep ModuleRef="Signup_Page" Name="Signup Form Input">
-          <TestStepValue Name="FullName_Input" Value="Tosca User" ActionMode="Input" />
-          <TestStepValue Name="Username_Input" Value="tosca_user" ActionMode="Input" />
-          <TestStepValue Name="Email_Input" Value="tosca@aryamart.test" ActionMode="Input" />
-          <TestStepValue Name="Phone_Input" Value="+1-555-777-1234" ActionMode="Input" />
-          <TestStepValue Name="Password_Input" Value="Tosca@1234" ActionMode="Input" />
-          <TestStepValue Name="ConfirmPassword_Input" Value="Tosca@1234" ActionMode="Input" />
-          <TestStepValue Name="Terms_Checkbox" Value="True" ActionMode="Input" />
-          <TestStepValue Name="Signup_Button" Value="" ActionMode="Input" />
-        </TestStep>
-        <TestStep ModuleRef="Header_Navbar" Name="Verify Active Session">
-          <TestStepValue Name="User_Dropdown" Value="*tosca*" ActionMode="Verify" />
-        </TestStep>
-      </TestCase>
+        <!-- TestCases Folder -->
+        <Object Class="TCFolder" Name="TestCases">
+          <Objects>
+            
+            <Object Class="TestCase" Name="TP-01: User Registration Signup">
+              <Objects>
+                <Object Class="TestStep" Name="Signup Form Input">
+                  <Parameters><Parameter Name="ModuleRef" Value="Signup_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="FullName_Input"><Parameters><Parameter Name="Value" Value="Tosca User" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Username_Input"><Parameters><Parameter Name="Value" Value="tosca_user" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Email_Input"><Parameters><Parameter Name="Value" Value="tosca@aryamart.test" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Phone_Input"><Parameters><Parameter Name="Value" Value="+1-555-777-1234" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Password_Input"><Parameters><Parameter Name="Value" Value="Tosca@1234" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="ConfirmPassword_Input"><Parameters><Parameter Name="Value" Value="Tosca@1234" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Terms_Checkbox"><Parameters><Parameter Name="Value" Value="True" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Signup_Button"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Verify Active Session">
+                  <Parameters><Parameter Name="ModuleRef" Value="Header_Navbar" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="User_Dropdown"><Parameters><Parameter Name="Value" Value="*tosca*" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                  </Objects>
+                </Object>
+              </Objects>
+            </Object>
 
-      <!-- TP-02 -->
-      <TestCase Name="TP-02: User Login">
-        <TestStep ModuleRef="Login_Page" Name="Login Form Input">
-          <TestStepValue Name="Username_Input" Value="alice_j" ActionMode="Input" />
-          <TestStepValue Name="Password_Input" Value="Alice@123" ActionMode="Input" />
-          <TestStepValue Name="Login_Button" Value="" ActionMode="Input" />
-        </TestStep>
-        <TestStep ModuleRef="Header_Navbar" Name="Verify Logged In User">
-          <TestStepValue Name="User_Dropdown" Value="*Alice*" ActionMode="Verify" />
-        </TestStep>
-      </TestCase>
+            <Object Class="TestCase" Name="TP-02: User Login">
+              <Objects>
+                <Object Class="TestStep" Name="Login Form Input">
+                  <Parameters><Parameter Name="ModuleRef" Value="Login_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Username_Input"><Parameters><Parameter Name="Value" Value="alice_j" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Password_Input"><Parameters><Parameter Name="Value" Value="Alice@123" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Login_Button"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Verify Logged In User">
+                  <Parameters><Parameter Name="ModuleRef" Value="Header_Navbar" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="User_Dropdown"><Parameters><Parameter Name="Value" Value="*Alice*" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                  </Objects>
+                </Object>
+              </Objects>
+            </Object>
 
-      <!-- TP-03 -->
-      <TestCase Name="TP-03: User Logout">
-        <TestStep ModuleRef="Header_Navbar" Name="Open User Menu">
-          <TestStepValue Name="User_Dropdown" Value="" ActionMode="Input" />
-        </TestStep>
-        <TestStep ModuleRef="Header_Navbar" Name="Trigger Logout">
-          <TestStepValue Name="Logout_Link" Value="" ActionMode="Input" />
-        </TestStep>
-        <TestStep ModuleRef="Login_Page" Name="Verify Redirected">
-          <TestStepValue Name="Login_Button" Value="" ActionMode="Verify" />
-        </TestStep>
-      </TestCase>
+            <Object Class="TestCase" Name="TP-03: User Logout">
+              <Objects>
+                <Object Class="TestStep" Name="Open User Menu">
+                  <Parameters><Parameter Name="ModuleRef" Value="Header_Navbar" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="User_Dropdown"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Trigger Logout">
+                  <Parameters><Parameter Name="ModuleRef" Value="Header_Navbar" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Logout_Link"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Verify Redirected">
+                  <Parameters><Parameter Name="ModuleRef" Value="Login_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Login_Button"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                  </Objects>
+                </Object>
+              </Objects>
+            </Object>
 
-      <!-- TP-04 -->
-      <TestCase Name="TP-04: Home Page Navigation">
-        <TestStep ModuleRef="Home_Page" Name="Verify Hero Elements">
-          <TestStepValue Name="Hero_Join_Button" Value="" ActionMode="Verify" />
-        </TestStep>
-        <TestStep ModuleRef="Home_Page" Name="Click Call To Action">
-          <TestStepValue Name="Hero_Shop_Button" Value="" ActionMode="Input" />
-        </TestStep>
-        <TestStep ModuleRef="Products_Page" Name="Verify Redirection to Listing">
-          <TestStepValue Name="Search_TextBox" Value="" ActionMode="Verify" />
-        </TestStep>
-      </TestCase>
+            <Object Class="TestCase" Name="TP-04: Home Page Navigation">
+              <Objects>
+                <Object Class="TestStep" Name="Verify Hero Elements">
+                  <Parameters><Parameter Name="ModuleRef" Value="Home_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Hero_Join_Button"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Click Call To Action">
+                  <Parameters><Parameter Name="ModuleRef" Value="Home_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Hero_Shop_Button"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Verify Redirection to Listing">
+                  <Parameters><Parameter Name="ModuleRef" Value="Products_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Search_TextBox"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                  </Objects>
+                </Object>
+              </Objects>
+            </Object>
 
-      <!-- TP-05 -->
-      <TestCase Name="TP-05: Product Search and Filtering">
-        <TestStep ModuleRef="Products_Page" Name="Search and Filter Actions">
-          <TestStepValue Name="Search_TextBox" Value="Keyboard" ActionMode="Input" />
-          <TestStepValue Name="Search_Button" Value="" ActionMode="Input" />
-          <TestStepValue Name="Category_Dropdown" Value="Electronics" ActionMode="Input" />
-          <TestStepValue Name="Sort_Dropdown" Value="Price: High to Low" ActionMode="Input" />
-        </TestStep>
-        <TestStep ModuleRef="Products_Page" Name="Clear Search Terms">
-          <TestStepValue Name="Clear_Search_Btn" Value="" ActionMode="Input" />
-        </TestStep>
-      </TestCase>
+            <Object Class="TestCase" Name="TP-05: Product Search and Filtering">
+              <Objects>
+                <Object Class="TestStep" Name="Search and Filter Actions">
+                  <Parameters><Parameter Name="ModuleRef" Value="Products_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Search_TextBox"><Parameters><Parameter Name="Value" Value="Keyboard" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Search_Button"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Category_Dropdown"><Parameters><Parameter Name="Value" Value="Electronics" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Sort_Dropdown"><Parameters><Parameter Name="Value" Value="Price: High to Low" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Clear Search Terms">
+                  <Parameters><Parameter Name="ModuleRef" Value="Products_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Clear_Search_Btn"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+              </Objects>
+            </Object>
 
-      <!-- TP-06 -->
-      <TestCase Name="TP-06: Quantity Selection">
-        <TestStep ModuleRef="Product_Detail" Name="Increase and Verify">
-          <TestStepValue Name="Qty_Inc" Value="" ActionMode="Input" />
-          <TestStepValue Name="Qty_Inc" Value="" ActionMode="Input" />
-          <TestStepValue Name="Detail_Qty" Value="3" ActionMode="Verify" />
-        </TestStep>
-        <TestStep ModuleRef="Product_Detail" Name="Decrease and Verify">
-          <TestStepValue Name="Qty_Dec" Value="" ActionMode="Input" />
-          <TestStepValue Name="Detail_Qty" Value="2" ActionMode="Verify" />
-        </TestStep>
-      </TestCase>
+            <Object Class="TestCase" Name="TP-06: Quantity Selection">
+              <Objects>
+                <Object Class="TestStep" Name="Increase and Verify">
+                  <Parameters><Parameter Name="ModuleRef" Value="Product_Detail" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Qty_Inc"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Qty_Inc"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Detail_Qty"><Parameters><Parameter Name="Value" Value="3" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Decrease and Verify">
+                  <Parameters><Parameter Name="ModuleRef" Value="Product_Detail" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Qty_Dec"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Detail_Qty"><Parameters><Parameter Name="Value" Value="2" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                  </Objects>
+                </Object>
+              </Objects>
+            </Object>
 
-      <!-- TP-07 -->
-      <TestCase Name="TP-07: Adding items to Cart">
-        <TestStep ModuleRef="Products_Page" Name="Search and Add to Cart">
-          <TestStepValue Name="Search_TextBox" Value="Headphones" ActionMode="Input" />
-          <TestStepValue Name="Search_Button" Value="" ActionMode="Input" />
-          <TestStepValue Name="AddToCart_Button" Value="" ActionMode="Input" />
-        </TestStep>
-        <TestStep ModuleRef="Header_Navbar" Name="Verify Badge Update">
-          <TestStepValue Name="Cart_Badge" Value="1" ActionMode="Verify" />
-        </TestStep>
-      </TestCase>
+            <Object Class="TestCase" Name="TP-07: Adding items to Cart">
+              <Objects>
+                <Object Class="TestStep" Name="Search and Add to Cart">
+                  <Parameters><Parameter Name="ModuleRef" Value="Products_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Search_TextBox"><Parameters><Parameter Name="Value" Value="Headphones" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Search_Button"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="AddToCart_Button"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Verify Badge Update">
+                  <Parameters><Parameter Name="ModuleRef" Value="Header_Navbar" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Cart_Badge"><Parameters><Parameter Name="Value" Value="1" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                  </Objects>
+                </Object>
+              </Objects>
+            </Object>
 
-      <!-- TP-08 -->
-      <TestCase Name="TP-08: Cart Management (Shipping Logic)">
-        <TestStep ModuleRef="Cart_Page" Name="Modify Row Quantities">
-          <TestStepValue Name="Qty_Inc_Row" Value="" ActionMode="Input" />
-        </TestStep>
-        <TestStep ModuleRef="Cart_Page" Name="Verify Free Shipping Achieved">
-          <TestStepValue Name="Shipping_Achieved" Value="" ActionMode="Verify" />
-        </TestStep>
-        <TestStep ModuleRef="Cart_Page" Name="Proceed to Next Step">
-          <TestStepValue Name="Checkout_Button" Value="" ActionMode="Input" />
-        </TestStep>
-      </TestCase>
+            <Object Class="TestCase" Name="TP-08: Cart Management (Shipping Logic)">
+              <Objects>
+                <Object Class="TestStep" Name="Modify Row Quantities">
+                  <Parameters><Parameter Name="ModuleRef" Value="Cart_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Qty_Inc_Row"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Verify Free Shipping Achieved">
+                  <Parameters><Parameter Name="ModuleRef" Value="Cart_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Shipping_Achieved"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Proceed to Next Step">
+                  <Parameters><Parameter Name="ModuleRef" Value="Cart_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Checkout_Button"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+              </Objects>
+            </Object>
 
-      <!-- TP-09 -->
-      <TestCase Name="TP-09: Checkout Delivery Fields">
-        <TestStep ModuleRef="Checkout_Page" Name="Input Delivery Credentials">
-          <TestStepValue Name="ShippingAddress_Input" Value="123 Tosca Way" ActionMode="Input" />
-          <TestStepValue Name="City_Input" Value="Austin" ActionMode="Input" />
-          <TestStepValue Name="State_Dropdown" Value="Texas" ActionMode="Input" />
-          <TestStepValue Name="ZipCode_Input" Value="73301" ActionMode="Input" />
-          <TestStepValue Name="PlaceOrder_Button" Value="" ActionMode="Input" />
-        </TestStep>
-      </TestCase>
+            <Object Class="TestCase" Name="TP-09: Checkout Delivery Fields">
+              <Objects>
+                <Object Class="TestStep" Name="Input Delivery Credentials">
+                  <Parameters><Parameter Name="ModuleRef" Value="Checkout_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="ShippingAddress_Input"><Parameters><Parameter Name="Value" Value="123 Tosca Way" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="City_Input"><Parameters><Parameter Name="Value" Value="Austin" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="State_Dropdown"><Parameters><Parameter Name="Value" Value="Texas" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="ZipCode_Input"><Parameters><Parameter Name="Value" Value="73301" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="PlaceOrder_Button"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+              </Objects>
+            </Object>
 
-      <!-- TP-10 -->
-      <TestCase Name="TP-10: Placed Order Confirmation">
-        <TestStep ModuleRef="Confirmation_Page" Name="Store Dynamic Order Number">
-          <TestStepValue Name="Confirmed_Order_No" Value="ORD_NUM" ActionMode="Buffer" />
-          <TestStepValue Name="Status_Text" Value="Confirmed" ActionMode="Verify" />
-        </TestStep>
-        <TestStep ModuleRef="Confirmation_Page" Name="Navigate to Orders">
-          <TestStepValue Name="View_Orders_Button" Value="" ActionMode="Input" />
-        </TestStep>
-      </TestCase>
+            <Object Class="TestCase" Name="TP-10: Placed Order Confirmation">
+              <Objects>
+                <Object Class="TestStep" Name="Store Dynamic Order Number">
+                  <Parameters><Parameter Name="ModuleRef" Value="Confirmation_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Confirmed_Order_No"><Parameters><Parameter Name="Value" Value="ORD_NUM" /><Parameter Name="ActionMode" Value="Buffer" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Status_Text"><Parameters><Parameter Name="Value" Value="Confirmed" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Navigate to Orders">
+                  <Parameters><Parameter Name="ModuleRef" Value="Confirmation_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="View_Orders_Button"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+              </Objects>
+            </Object>
 
-      <!-- TP-11 -->
-      <TestCase Name="TP-11: Order History Loading">
-        <TestStep ModuleRef="Orders_Page" Name="Verify Order List Links">
-          <TestStepValue Name="Search_Order_Link" Value="" ActionMode="Verify" />
-        </TestStep>
-        <TestStep ModuleRef="Orders_Page" Name="Open Order Details">
-          <TestStepValue Name="View_Details_Link" Value="" ActionMode="Input" />
-        </TestStep>
-      </TestCase>
+            <Object Class="TestCase" Name="TP-11: Order History Loading">
+              <Objects>
+                <Object Class="TestStep" Name="Verify Order List Links">
+                  <Parameters><Parameter Name="ModuleRef" Value="Orders_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Search_Order_Link"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Open Order Details">
+                  <Parameters><Parameter Name="ModuleRef" Value="Orders_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="View_Details_Link"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+              </Objects>
+            </Object>
 
-      <!-- TP-12 -->
-      <TestCase Name="TP-12: Track Order using Buffered Order Number">
-        <TestStep ModuleRef="Header_Navbar" Name="Navigate to Search">
-          <TestStepValue Name="Search_Order_Link" Value="" ActionMode="Input" />
-        </TestStep>
-        <TestStep ModuleRef="Track_Order_Page" Name="Perform Search using Buffer">
-          <TestStepValue Name="Search_Input" Value="{B[ORD_NUM]}" ActionMode="Input" />
-          <TestStepValue Name="Track_Button" Value="" ActionMode="Input" />
-        </TestStep>
-        <TestStep ModuleRef="Track_Order_Page" Name="Verify Order Progress Details">
-          <TestStepValue Name="Result_Order_No" Value="{B[ORD_NUM]}" ActionMode="Verify" />
-          <TestStepValue Name="Result_Status" Value="*Confirmed*" ActionMode="Verify" />
-          <TestStepValue Name="Timeline_Step_1" Value="*done*" ActionMode="Verify" />
-          <TestStepValue Name="Timeline_Step_2" Value="*active*" ActionMode="Verify" />
-        </TestStep>
-      </TestCase>
-    </Folder>
-  </Folder>
-</TOSCA>
+            <Object Class="TestCase" Name="TP-12: Track Order using Buffered Order Number">
+              <Objects>
+                <Object Class="TestStep" Name="Navigate to Search">
+                  <Parameters><Parameter Name="ModuleRef" Value="Header_Navbar" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Search_Order_Link"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Perform Search using Buffer">
+                  <Parameters><Parameter Name="ModuleRef" Value="Track_Order_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Search_Input"><Parameters><Parameter Name="Value" Value="{B[ORD_NUM]}" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Track_Button"><Parameters><Parameter Name="Value" Value="" /><Parameter Name="ActionMode" Value="Input" /></Parameters></Object>
+                  </Objects>
+                </Object>
+                <Object Class="TestStep" Name="Verify Order Progress Details">
+                  <Parameters><Parameter Name="ModuleRef" Value="Track_Order_Page" /></Parameters>
+                  <Objects>
+                    <Object Class="TestStepValue" Name="Result_Order_No"><Parameters><Parameter Name="Value" Value="{B[ORD_NUM]}" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Result_Status"><Parameters><Parameter Name="Value" Value="*Confirmed*" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Timeline_Step_1"><Parameters><Parameter Name="Value" Value="*done*" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                    <Object Class="TestStepValue" Name="Timeline_Step_2"><Parameters><Parameter Name="Value" Value="*active*" /><Parameter Name="ActionMode" Value="Verify" /></Parameters></Object>
+                  </Objects>
+                </Object>
+              </Objects>
+            </Object>
+          </Objects>
+        </Object>
+      </Objects>
+    </Object>
+  </Objects>
+</Subset>
