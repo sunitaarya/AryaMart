@@ -1,0 +1,54 @@
+TestCase,TestStep,TestStepValue,Value,ActionMode
+TP-01: User Registration Signup,Signup Form Input,FullName_Input,Tosca User,Input
+TP-01: User Registration Signup,Signup Form Input,Username_Input,tosca_user,Input
+TP-01: User Registration Signup,Signup Form Input,Email_Input,tosca@aryamart.test,Input
+TP-01: User Registration Signup,Signup Form Input,Phone_Input,+1-555-777-1234,Input
+TP-01: User Registration Signup,Signup Form Input,Password_Input,Tosca@1234,Input
+TP-01: User Registration Signup,Signup Form Input,ConfirmPassword_Input,Tosca@1234,Input
+TP-01: User Registration Signup,Signup Form Input,Terms_Checkbox,True,Input
+TP-01: User Registration Signup,Signup Form Input,Signup_Button,,Input
+TP-01: User Registration Signup,Verify Active Session,User_Dropdown,*tosca*,Verify
+TP-02: User Login,Login Form Input,Username_Input,alice_j,Input
+TP-02: User Login,Login Form Input,Password_Input,Alice@123,Input
+TP-02: User Login,Login Form Input,Login_Button,,Input
+TP-02: User Login,Verify Logged In User,User_Dropdown,*Alice*,Verify
+TP-03: User Logout,Open User Menu,User_Dropdown,,Input
+TP-03: User Logout,Trigger Logout,Logout_Link,,Input
+TP-03: User Logout,Verify Redirected,Login_Button,,Verify
+TP-04: Home Page Navigation,Verify Hero Elements,Hero_Join_Button,,Verify
+TP-04: Home Page Navigation,Click Call To Action,Hero_Shop_Button,,Input
+TP-04: Home Page Navigation,Verify Redirection to Listing,Search_TextBox,,Verify
+TP-05: Product Search and Filtering,Search and Filter Actions,Search_TextBox,Keyboard,Input
+TP-05: Product Search and Filtering,Search and Filter Actions,Search_Button,,Input
+TP-05: Product Search and Filtering,Search and Filter Actions,Category_Dropdown,Electronics,Input
+TP-05: Product Search and Filtering,Search and Filter Actions,Sort_Dropdown,Price: High to Low,Input
+TP-05: Product Search and Filtering,Clear Search Terms,Clear_Search_Btn,,Input
+TP-06: Quantity Selection,Increase and Verify,Qty_Inc,,Input
+TP-06: Quantity Selection,Increase and Verify,Qty_Inc,,Input
+TP-06: Quantity Selection,Increase and Verify,Detail_Qty,3,Verify
+TP-06: Quantity Selection,Decrease and Verify,Qty_Dec,,Input
+TP-06: Quantity Selection,Decrease and Verify,Detail_Qty,2,Verify
+TP-07: Adding items to Cart,Search and Add to Cart,Search_TextBox,Headphones,Input
+TP-07: Adding items to Cart,Search and Add to Cart,Search_Button,,Input
+TP-07: Adding items to Cart,Search and Add to Cart,AddToCart_Button,,Input
+TP-07: Adding items to Cart,Verify Badge Update,Cart_Badge,1,Verify
+TP-08: Cart Management (Shipping Logic),Modify Row Quantities,Qty_Inc_Row,,Input
+TP-08: Cart Management (Shipping Logic),Verify Free Shipping Achieved,Shipping_Achieved,,Verify
+TP-08: Cart Management (Shipping Logic),Proceed to Next Step,Checkout_Button,,Input
+TP-09: Checkout Delivery Fields,Input Delivery Credentials,ShippingAddress_Input,123 Tosca Way,Input
+TP-09: Checkout Delivery Fields,Input Delivery Credentials,City_Input,Austin,Input
+TP-09: Checkout Delivery Fields,Input Delivery Credentials,State_Dropdown,Texas,Input
+TP-09: Checkout Delivery Fields,Input Delivery Credentials,ZipCode_Input,73301,Input
+TP-09: Checkout Delivery Fields,Input Delivery Credentials,PlaceOrder_Button,,Input
+TP-10: Placed Order Confirmation,Store Dynamic Order Number,Confirmed_Order_No,ORD_NUM,Buffer
+TP-10: Placed Order Confirmation,Store Dynamic Order Number,Status_Text,Confirmed,Verify
+TP-10: Placed Order Confirmation,Navigate to Orders,View_Orders_Button,,Input
+TP-11: Order History Loading,Verify Order List Links,Search_Order_Link,,Verify
+TP-11: Order History Loading,Open Order Details,View_Details_Link,,Input
+TP-12: Track Order using Buffered Order Number,Navigate to Search,Search_Order_Link,,Input
+TP-12: Track Order using Buffered Order Number,Perform Search using Buffer,Search_Input,{B[ORD_NUM]},Input
+TP-12: Track Order using Buffered Order Number,Perform Search using Buffer,Track_Button,,Input
+TP-12: Track Order using Buffered Order Number,Verify Order Progress Details,Result_Order_No,{B[ORD_NUM]},Verify
+TP-12: Track Order using Buffered Order Number,Verify Order Progress Details,Result_Status,*Confirmed*,Verify
+TP-12: Track Order using Buffered Order Number,Verify Order Progress Details,Timeline_Step_1,*done*,Verify
+TP-12: Track Order using Buffered Order Number,Verify Order Progress Details,Timeline_Step_2,*active*,Verify
