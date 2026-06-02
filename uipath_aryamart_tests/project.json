@@ -1,0 +1,69 @@
+{
+  "name": "AryaMartUiPathTests",
+  "description": "UiPath Test Automation Project for AryaMart E-Commerce Web Application",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.System.Activities": "[23.10.3]",
+    "UiPath.Testing.Activities": "[23.10.0]",
+    "UiPath.UIAutomation.Activities": "[23.10.8]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "23.10.3.0",
+  "projectVersion": "1.0.0",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": true,
+    "isAttended": false,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "workflowSerializationVariableFormat": "None",
+    "excludedLoggedData": [
+      "Private:*"
+    ],
+    "executionType": "Workflow",
+    "fileName": "Main.xaml"
+  },
+  "designOptions": {
+    "projectProfile": "Development",
+    "outputType": "Tests",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "e0a1f0a1-7788-44d4-a131-7b7cfa374822",
+        "testCaseType": "TestCase",
+        "fileName": "TestCase_Login.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "f5b2f5b2-8899-44d4-b242-8b8dfb485933",
+        "testCaseType": "TestCase",
+        "fileName": "TestCase_AddToCart.xaml"
+      }
+    ],
+    "modernBehavior": true,
+    "saveToCloud": false
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "06ce2703-a4f6-4bc2-af8b-b65fb7bb110f",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Windows"
+}
